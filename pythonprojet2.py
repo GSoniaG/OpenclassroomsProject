@@ -10,7 +10,7 @@ import urllib.request
 
 list_results =[]
 
-def export_image(image_url,title):
+def export_image(image_url,title): # export picture file csv
     reponse = urllib.request.urlopen(image_url)
     image = reponse.read()
     coupe_title = ['(','/']

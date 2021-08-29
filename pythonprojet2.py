@@ -1,6 +1,6 @@
-# extraire les données livres d'une même catégorie (avec plusieurs pages) et pour toutes les catégories
-# données livres dans un csv par catégorie avec import csv , 1 livre par ligne
-# 1 fichier par image.png
+# extract books data per catégory (with several pages) and for all catégories (50)
+# dbooks data saved in a csv file by catégory with "import csv" , 1 book per line
+# 1 file per picture.png
 # ---------------------------------------------------------------------------- OK ---------------------------------------
 
 import requests 
@@ -10,7 +10,7 @@ import urllib.request
 
 list_results =[]
 
-def export_image(image_url,title): # export picture file csv
+def export_image(image_url,title): # export picture file png
     reponse = urllib.request.urlopen(image_url)
     image = reponse.read()
     coupe_title = ['(','/']
@@ -30,7 +30,7 @@ def export_image(image_url,title): # export picture file csv
     with open(nom_imagePng, "wb") as file:
         file.write(image)
 
-def export_csv():
+def export_csv(): # export books file csv
     categorie = format(href)[25:-11]+'.csv'
     print('======  categorie export_csv : ',categorie,'===========================================')
     with open (categorie,'w',newline="") as result:
@@ -42,7 +42,7 @@ def export_csv():
             columns = [c.strip() for c in row.strip(', ').split(',')]
             writer.writerow(columns)
 
-def livres(links):
+def livres(links): # extract books data from website
     url = links
     response = requests.get(url)
     response.encoding = "UTF-8" # ajout Arthur
@@ -59,8 +59,6 @@ def livres(links):
         universal_product_code = product_information[0].text # code UPC
         price_excluding_tax = product_information[2].text.replace('£', '')
         price_including_tax = product_information[3].text.replace('£', '')          
-        #price_excluding_tax = product_information[2].text.replace('Â£', '') 
-        #price_including_tax = product_information[3].text.replace('Â£', '') 
         number_available = product_information[5].text  
         
         product_description =''
@@ -97,18 +95,18 @@ def livres(links):
         final_result = product_page_url  + ',' +  universal_product_code  + ',' +  title  + ',' +  price_including_tax  + ',' +  price_excluding_tax  + ',' +  number_available + ',' +   category  + ',' +  review_rating  + ',' + resultat + ',' + image_url + ',' + product_description + '\n'
         list_results.append(final_result)
 
-def traitement_page():
+def traitement_page(): # processing all books on a page
     link = soup.find_all('h3')
     for h3 in link:
         livre = []
         links = []
         a = h3.find('a')
         livre = a['href'][8:]
-        links = 'https://books.toscrape.com/catalogue' + livre
+        links = 'https://books.toscrape.com/catalogue' + livre # book url
         livres(links)
 
-#début du programme -----------------------------------------------------
-url = 'http://books.toscrape.com' # url du site 
+#start of the program -----------------------------------------------------
+url = 'http://books.toscrape.com' # url site 
 response = requests.get(url) 
 
 if response.ok:
@@ -116,11 +114,11 @@ if response.ok:
     for categories in soup.find('ul', class_='nav nav-list').find('li').find('ul').find_all('li'):
         href = categories.a.get('href')
         url = "https://books.toscrape.com/{}".format(href)
-        response = requests.get(url) # 1ère catégorie 
+        response = requests.get(url) # categories
         if response.ok :
             soup = BeautifulSoup(response.text,"html.parser")
             traitement_page()
-            page_suivante = soup.find('li', class_='next')          
+            page_suivante = soup.find('li', class_='next') # next page per category       
             no_page = 2
             index = "index.html"
             while page_suivante is not None:
@@ -134,5 +132,3 @@ if response.ok:
                 no_page = no_page + 1
             export_csv()
             list_results =[]
-
-            

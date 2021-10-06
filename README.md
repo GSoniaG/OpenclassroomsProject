@@ -2,7 +2,7 @@
 
 Analyse marketing chez Books Online : suivi des prix des livres chez "Books to Scrape"(revendeur de livres en ligne)
 
-installation du projet :
+## installation du projet :
 environnement virtuel "env2" : C:\Users\sggue\projects\projet2\env2
 
 installation des paquets python : 

@@ -1,30 +1,30 @@
 # OpenclassroomsProject
 
-Analyse marketing chez Books Online : suivi des prix des livres chez "Books to Scrape"(revendeur de livres en ligne)
+Books Online market Analyse : monitoring of book prices at "Books to Scrape" (online book reseller)
 
-## Installation du projet : <br/>
-### Environnement virtuel "env2" (ensemble de paquets Python propres au projet) : <br/>
-- créer un environnement virtuel avec le module Python venv (pour créer et gérer des environnements virtuels avec version Python 3.7.1)<br/>
-- commande python : -m venv <environment name> (<environment name> = env2 dans ce projet) <br/>
+## 1 - Project installation : <br/>
+### Virtual environment "env2" (set of project-specific Python packages) : <br/>
+- create a virtual environment with the venv Python module (to create and manage virtual environments with Python version 3.7.1)<br/>
+- python command : -m venv <environment name> (<environment name> = env2 in this project) <br/>
 
-## Installation des paquets python :<br/>
+## Installation of python packages :<br/>
 pip install -r requirements.txt<br/>
 
-## Descriptif du projet : <br/>
-- Suivre les prix des livres chez Books to Scrape, un revendeur de livres en ligne <br/>
-- Enregistrer les données livres dans un fichier CSV par catégorie, un fichier CSV distinct pour chaque catégorie de livres <br/>
-- Télécharger et enregistrer le fichier image de chaque page Produit (fichier png) <br/>
-## Processus ETL : <br/>
-- Extraction de données web : extract <br/>
- requests <br/>
-  url : lien de la page à scraper <br/>
-  protocole http de communication avec un serveur, méthode (ou requête get) de requests pour obtenir une réponse qui contient une page web (objet response) <br/>
+## 2 - Description of the project : <br/>
+- Track book prices at Books to Scrape, an online book reseller <br/>
+- Save the books data in a CSV file by category, a separate CSV file for each category of books <br/>
+- Download and save the image file of each Product page (png file)<br/>
+## 3 - ETL Proces : <br/>
+- Web data extraction : extract <br/>
+ REQUESTS <br/>
+ url : link of the page to scrape <br/>
+ http protocol for communication with a server, method (or get request) of requests to obtain a response that contains a web page (response object)<br/>
 - Transform : transformation <br/>
  beautifulsoup bs4 <br/>
-  transforme (parse) le HTML en objet BeautifulSoup <br/>
-  résultat du contenu html (parsé ou extraire des informations) et récupérer les données livres <br/>
-- Load : chargement des données <br/>
-  création des fichiers csv et png <br/>
+ transform (parse) the HTML into a BeautifulSoup object <br/>
+ result of html content (parsed or extract information) and retrieve the data books <br/>
+- Load : data loading <br/>
+ creation of csv and png files<br/>
 
-## Script python à lancer : <br/>
+## 4- Python script to launch : <br/>
  pythonprojet2.py

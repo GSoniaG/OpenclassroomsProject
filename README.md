@@ -3,13 +3,15 @@
 Analyse marketing chez Books Online : suivi des prix des livres chez "Books to Scrape"(revendeur de livres en ligne)
 
 ## installation du projet :
-environnement virtuel "env2" : C:\Users\sggue\projects\projet2\env2
+environnement virtuel "env2" (ensemble de paquets Python propres au projet) :
+ créer un environnement virtuel avec le module Python venv (pour créer et gérer des environnements virtuels avec version Python 3.7.1)
+ commande python : -m venv <environment name> (<environment name> = env2 dans ce projet)
+activer l'environnement : 
+ exécutez source env/bin/activate  
+ sous Windows  : env/Scripts/activate.bat
 
-installation des paquets python : 
-C:\Users\sggue\projects\projet2\env2>
-python -m pip install --upgrade pip
-pip install requests
-pip install bs4 
+installation des paquets python :
+pip install -r requirements.txt
 
 descriptif du projet : 
 suivre les prix des livres chez Books to Scrape, un revendeur de livres en ligne
